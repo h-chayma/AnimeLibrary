@@ -1,0 +1,51 @@
+<section class="breadcrumb-area overlay-dark d-flex align-items-center">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <div class="breadcrumb-content text-center">
+                    <h2 class="m-0">Artists</h2>
+                    <ol class="breadcrumb d-flex justify-content-center">
+                        <li class="breadcrumb-item"><a routerLink="">Home</a></li>
+                        <li class="breadcrumb-item active">Artists</li>
+                    </ol>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="popular-collections-area">
+    <div class="container">
+        <div class="row items">
+            <div class="col-12 col-sm-6 col-lg-3 item" *ngFor="let artist of artistsList.items">
+                <div class="card no-hover text-center">
+                    <div class="image-over">
+                        <a [href]="'artist/' + artist.id">
+                            <img class="card-img-top" src="https://shorturl.at/vxyIV" alt="">
+                        </a>
+                        <a class="seller" [href]="'artist/' + artist.id">
+                            <div class="seller-thumb avatar-lg">
+                                <img class="rounded-circle" src="https://shorturl.at/qxEGS" alt="">
+                            </div>
+                        </a>
+                    </div>
+                    <div class="card-caption col-12 p-0">
+                        <div class="card-body mt-4">
+                            <a [href]="'artist/' + artist.id">
+                                <h5>{{artist.name}}</h5>
+                            </a>
+                            <div *ngIf="artist.links && artist.links.length > 0" class="links-container">
+                                <ul class="links-list">
+                                    <li *ngFor="let link of artist.links.slice(0, 3)">
+                                        <a class="btn btn-bordered-white btn-smaller" [href]="link" target="_blank"
+                                            [innerHTML]="getLinkIcon(link)"></a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

@@ -1,0 +1,19 @@
+.links-container {
+    display: flex;
+    align-items: center;
+}
+
+.links-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+}
+
+.links-list li {
+    margin-right: 10px;
+}
+
+.popular-collections-area {
+    padding: 40px 0;
+}

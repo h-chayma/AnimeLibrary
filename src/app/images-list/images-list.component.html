@@ -1,0 +1,44 @@
+<section class="breadcrumb-area overlay-dark d-flex align-items-center">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <div class="breadcrumb-content text-center">
+                    <h2 class="m-0">Gallery</h2>
+                    <ol class="breadcrumb d-flex justify-content-center">
+                        <li class="breadcrumb-item"><a routerLink="">Home</a></li>
+                        <li class="breadcrumb-item active">Gallery</li>
+                    </ol>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="live-auctions-area load-more">
+    <div class="container">
+        <div class="row">
+            <div class="col-12 col-sm-6 col-lg-3 mb-4" *ngFor="let anime of imagesList.items">
+                <div class="card">
+                    <div class="image-over">
+                        <a [href]="'image/' + anime.id">
+                            <img class="card-img-top" [src]="anime.image_url" alt="">
+                        </a>
+                    </div>
+                    <div class="card-caption col-12 p-0">
+                        <div class="card-body">
+                            <div class="card-bottom d-flex justify-content-between">
+                                <span>{{convertOctetsToKilobytes(anime.image_size)}}</span>
+                                <span>{{anime.image_width}} x {{anime.image_height}}</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12 text-center">
+                <a id="load-btn" class="btn btn-bordered-white mt-5" href="#">Load More</a>
+            </div>
+        </div>
+    </div>
+</section>

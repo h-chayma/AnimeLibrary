@@ -1,0 +1,80 @@
+<section class="live-auctions-area">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <div class="intro d-flex justify-content-between align-items-end m-0">
+                    <div class="intro-content">
+                        <span>Top Nekos</span>
+                        <h3 class="mt-3 mb-0">Random Images</h3>
+                    </div>
+                    <div class="intro-btn">
+                        <a class="btn content-btn" routerLink="gallery">View All</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="auctions-slides">
+            <div class="swiper-container slider-mid items">
+                <div class="swiper-wrapper">
+                    <div class="swiper-slide item" *ngFor="let anime of imagesList.items.slice(0, 6)">
+                        <div class="card">
+                            <div class="image-over">
+                                <a [href]="'image/' + anime.id">
+                                    <img class="card-img-top" [src]="anime.image_url" alt="">
+                                </a>
+                            </div>
+                            <div class="card-caption col-12 p-0">
+                                <div class="card-body">
+                                    <div class="card-bottom d-flex justify-content-between">
+                                        <span>{{convertOctetsToKilobytes(anime.image_size)}}</span>
+                                        <span>{{anime.image_width}} x {{anime.image_height}}</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="swiper-pagination"></div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="top-seller-area">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <div class="intro d-flex justify-content-between align-items-end m-0">
+                    <div class="intro-content">
+                        <span>Creative Artist</span>
+                        <h3 class="mt-3 mb-0">Top Artists</h3>
+                    </div>
+                    <div class="intro-btn">
+                        <a class="btn content-btn" routerLink="artists">View All</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row items">
+            <div class="col-12 col-sm-6 col-lg-4 item" *ngFor="let artist of artistsList.items.slice(0, 6)">
+                <div class="card no-hover">
+                    <div class="single-seller d-flex align-items-center">
+                        <a [href]="'artist/' + artist.id">
+                            <img class="avatar-md rounded-circle" src="https://shorturl.at/qxEGS" alt="">
+                        </a>
+                        <div class="seller-info ml-3">
+                            <a class="seller mb-2" [href]="'artist/' + artist.id">{{artist.name}}</a>
+                            <div *ngIf="artist.links && artist.links.length > 0" class="links-container">
+                                <ul class="links-list">
+                                    <li *ngFor="let link of artist.links">
+                                        <a [href]="link" target="_blank" [innerHTML]="getLinkIcon(link)"></a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
