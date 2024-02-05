@@ -54,7 +54,7 @@
                     <div class="col-12 col-md-6 item explore-item" *ngFor="let anime of artistImages.items">
                         <div class="card">
                             <div class="image-over">
-                                <a [href]="anime.id">
+                                <a [href]="'image/'+anime.id">
                                     <img class="card-img-top" [src]="anime.image_url" alt="">
                                 </a>
                             </div>
