@@ -50,7 +50,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="row items explore-items">
+                <div class="row items explore-items" *ngIf="artistImages.items">
                     <div class="col-12 col-md-6 item explore-item" *ngFor="let anime of artistImages.items">
                         <div class="card">
                             <div class="image-over">
@@ -66,6 +66,13 @@
                                     </div>
                                 </div>
                             </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row items explore-items" *ngIf="!artistImages.items || artistImages.items.length === 0">
+                    <div class="col-12 col-md-6 item explore-item">
+                        <div class="card">
+                            <p>No Images Available</p>
                         </div>
                     </div>
                 </div>

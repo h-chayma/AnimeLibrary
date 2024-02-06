@@ -33,4 +33,5 @@ export class AnimeService {
   getArtistImages(artistId: string): Observable<any> {
     return this.http.get<any>(this.apiUrl + "/artists/" + artistId + "/images?rating=safe");
   }
+  
 }

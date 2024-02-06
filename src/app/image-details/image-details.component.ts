@@ -28,6 +28,16 @@ export class ImageDetailsComponent {
     return `rgb(${color[0]}, ${color[1]}, ${color[2]})`;
   }
 
+  copyColorCode(color: string): void {
+    const inputElement = document.createElement('input');
+    inputElement.value = color;
+    document.body.appendChild(inputElement);
+    inputElement.select();
+    document.execCommand('copy');
+    document.body.removeChild(inputElement);
+    alert(`Color code '${color}' copied to clipboard.`);
+  }
+
   formatDate(timestamp: number): string {
     const date = new Date(timestamp * 1000);
     const options: Intl.DateTimeFormatOptions = {

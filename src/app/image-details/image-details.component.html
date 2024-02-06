@@ -64,7 +64,7 @@
                         <h4 class="palette-title">Color Palette</h4>
                         <div class="color-box-container">
                             <div *ngFor="let color of imageDetails.color_palette" class="color-box"
-                                [style.background-color]="getColorString(color)"></div>
+                                [style.background-color]="getColorString(color)" (click)="copyColorCode(color)"></div>
                         </div>
                     </div>
                 </div>
