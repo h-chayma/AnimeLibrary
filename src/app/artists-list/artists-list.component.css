@@ -17,3 +17,21 @@
 .popular-collections-area {
     padding: 40px 0;
 }
+
+
+.breadcrumb-area .breadcrumb-item.active {
+    color: gray !important;
+}
+
+.loading-spinner {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.loading-spinner img {
+    width: 100px;
+    height: 100px;
+}

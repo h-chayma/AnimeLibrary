@@ -14,10 +14,14 @@
     </div>
 </section>
 
-<section class="live-auctions-area load-more">
+<div *ngIf="loading" class="loading-spinner">
+    <img src="assets/img/loading.gif" alt="Loading..." />
+</div>
+
+<section *ngIf="!loading" class="live-auctions-area load-more">
     <div class="container">
         <div class="row">
-            <div class="col-12 col-sm-6 col-lg-3 mb-4" *ngFor="let anime of imagesList.items">
+            <div class="col-12 col-sm-6 col-lg-3 mb-4" *ngFor="let anime of visibleImages">
                 <div class="card">
                     <div class="image-over">
                         <a [href]="'image/' + anime.id">
@@ -36,8 +40,8 @@
             </div>
         </div>
         <div class="row">
-            <div class="col-12 text-center">
-                <a id="load-btn" class="btn btn-bordered-white mt-5" href="#">Load More</a>
+            <div class="col-12 text-center" *ngIf="isLoadMoreVisible()">
+                <button (click)="showMoreImages()" class="btn btn-bordered-white mt-5">Load More</button>
             </div>
         </div>
     </div>

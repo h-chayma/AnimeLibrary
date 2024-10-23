@@ -8,9 +8,10 @@ import { AnimeService } from '../service/anime.service';
 })
 export class ArtistsListComponent {
   artistsList: any;
+  loading: boolean = true;
 
   constructor(private animeService: AnimeService) { }
-  
+
   getLinkIcon(url: string): string {
     if (url.includes('pixiv.net')) {
       return '<i class="fab fa-pinterest"></i>';
@@ -26,6 +27,7 @@ export class ArtistsListComponent {
   ngOnInit() {
     this.animeService.getArtistsList().subscribe((data) => {
       this.artistsList = data;
+      this.loading = false;
     });
   }
 }

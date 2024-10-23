@@ -7,15 +7,26 @@ import { AnimeService } from '../service/anime.service';
   styleUrl: './images-list.component.css'
 })
 export class ImagesListComponent {
-  imagesList: any;
+  imagesList: any[] = [];
+  visibleImages: any[] = [];
+  itemsToShow: number = 4;
+  increment: number = 4;
+  loading: boolean = true; 
 
   constructor(private animeService: AnimeService) { }
 
   ngOnInit() {
-    this.animeService.getImagesList().subscribe((data) => {
-      this.imagesList = data;
-      this.initLoadMore();
-    });
+    this.animeService.getImagesList().subscribe(
+      (data) => {
+        this.imagesList = data.items;
+        this.showMoreImages();
+        this.loading = false;
+      },
+      (error) => {
+        console.error('Error loading images', error);
+        this.loading = false;
+      }
+    );
   }
 
   convertOctetsToKilobytes(octets: number) {
@@ -25,19 +36,12 @@ export class ImagesListComponent {
     return (octets / 1024).toFixed(2) + ' KB';
   }
 
-  initLoadMore() {
-    $(".load-more .item").slice(0, 4).show();
-    $(".blog-area.load-more .item").slice(0, 6).show();
+  showMoreImages() {
+    const newItems = this.imagesList.slice(this.visibleImages.length, this.visibleImages.length + this.increment);
+    this.visibleImages = [...this.visibleImages, ...newItems];
+  }
 
-    $("#load-btn").on('click', (e) => {
-      e.preventDefault();
-
-      $(".load-more .item:hidden").slice(0, 4).slideDown();
-      $(".blog-area.load-more .item:hidden").slice(0, 6).slideDown();
-
-      if ($(".load-more .item:hidden").length === 0) {
-        $("#load-btn").fadeOut('slow');
-      }
-    });
+  isLoadMoreVisible(): boolean {
+    return this.visibleImages.length < this.imagesList.length;
   }
 }

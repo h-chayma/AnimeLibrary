@@ -1,4 +1,8 @@
-<section class="live-auctions-area">
+<div *ngIf="loading" class="loading-spinner">
+    <img src="assets/img/loading.gif" alt="Loading..." />
+</div>
+
+<section *ngIf="!loading" class="live-auctions-area">
     <div class="container">
         <div class="row">
             <div class="col-12">
@@ -40,7 +44,7 @@
     </div>
 </section>
 
-<section class="top-seller-area">
+<section *ngIf="!loading" class="top-seller-area">
     <div class="container">
         <div class="row">
             <div class="col-12">
@@ -60,7 +64,7 @@
                 <div class="card no-hover">
                     <div class="single-seller d-flex align-items-center">
                         <a [href]="'artist/' + artist.id">
-                            <img class="avatar-md rounded-circle" src="https://shorturl.at/qxEGS" alt="">
+                            <img class="avatar-md rounded-circle" src="assets/img/user.webp" alt="">
                         </a>
                         <div class="seller-info ml-3">
                             <a class="seller mb-2" [href]="'artist/' + artist.id">{{artist.name}}</a>

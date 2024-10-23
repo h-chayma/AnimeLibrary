@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { AfterViewChecked, Component, OnInit } from '@angular/core';
 import AOS from 'aos';
 import Swiper from 'swiper';
 import { AnimeService } from '../service/anime.service';
@@ -8,22 +8,39 @@ import { AnimeService } from '../service/anime.service';
   templateUrl: './home.component.html',
   styleUrl: './home.component.css'
 })
-export class HomeComponent implements OnInit {
+export class HomeComponent implements OnInit, AfterViewChecked {
   imagesList: any;
   artistsList: any;
+  loading: boolean = true;
+  swiperInitialized: boolean = false;
 
   constructor(private animeService: AnimeService) { }
 
   ngOnInit() {
-    this.initSwipers();
     AOS.init();
+
     this.animeService.getRandomImagesList().subscribe((data) => {
       this.imagesList = data;
+      this.checkLoading();
     });
-    console.log("listhome : " + this.imagesList);
+
     this.animeService.getArtistsList().subscribe((data) => {
       this.artistsList = data;
+      this.checkLoading();
     });
+  }
+
+  checkLoading() {
+    if (this.imagesList && this.artistsList) {
+      this.loading = false;
+    }
+  }
+
+  ngAfterViewChecked() {
+    if (!this.loading && !this.swiperInitialized) {
+      this.initSwipers();
+      this.swiperInitialized = true;
+    }
   }
 
   getLinkIcon(url: string): string {
@@ -47,7 +64,6 @@ export class HomeComponent implements OnInit {
   }
 
   initSwipers() {
-    // Full Slider
     const fullSlider = new Swiper('.full-slider', {
       autoplay: {
         delay: 10000,
@@ -102,7 +118,6 @@ export class HomeComponent implements OnInit {
       }
     });
 
-    // Min Slider
     const minSlider = new Swiper('.slider-min', {
       autoplay: {
         delay: 5000,
@@ -131,7 +146,6 @@ export class HomeComponent implements OnInit {
       pagination: false,
     });
 
-    // No Slider
     const sliderDisabled = new Swiper('.no-slider', {
       autoplay: false,
       loop: false,
