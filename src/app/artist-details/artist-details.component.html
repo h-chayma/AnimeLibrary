@@ -32,8 +32,8 @@
                             <h5 class="mb-3">{{artistDetails.name}}</h5>
                             <p class="my-3"><b>Aliases:</b> {{ artistDetails.aliases.join(', ') }}</p>
                             <div class="social-icons d-flex justify-content-center my-3">
-                                <a class="facebook" href="#" *ngFor="let link of artistDetails.links.slice(0, 4)"
-                                    [href]="link" target="_blank" [innerHTML]="getLinkIcon(link)">
+                                <a class="facebook" *ngFor="let link of artistDetails.links.slice(0, 4)" [href]="link"
+                                    target="_blank" [innerHTML]="getLinkIcon(link)">
                                 </a>
                             </div>
                         </div>
@@ -43,7 +43,7 @@
             <div class="col-12 col-md-8">
                 <div class="row justify-content-center mt-5 mt-lg-0">
                     <div class="col-12">
-                        <div class="explore-menu btn-group btn-group-toggle flex-wrap justify-content-center mb-4">
+                        <div class="explore-menu btn-group btn-group-toggle flex-wrap justify-content-center">
                             <label class="d-table text-uppercase p-2">
                                 <span>Artist's Images</span>
                             </label>
@@ -54,7 +54,7 @@
                     <div class="col-12 col-md-6 item explore-item" *ngFor="let anime of artistImages.items">
                         <div class="card">
                             <div class="image-over">
-                                <a [href]="'image/'+anime.id">
+                                <a [routerLink]="['/image/', anime.id]">
                                     <img class="card-img-top" [src]="anime.image_url" alt="">
                                 </a>
                             </div>
@@ -69,8 +69,8 @@
                         </div>
                     </div>
                 </div>
-                <div class="row items explore-items" *ngIf="!artistImages.items || artistImages.items.length === 0">
-                    <div class="col-12 col-md-6 item explore-item">
+                <div class="row items explore-items" *ngIf="count == 0">
+                    <div class="col-12 mt-2">
                         <div class="card">
                             <p>No Images Available</p>
                         </div>

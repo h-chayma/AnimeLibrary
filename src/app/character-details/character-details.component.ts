@@ -12,6 +12,7 @@ export class CharacterDetailsComponent {
   characterImages: any[] = [];
   visibleImages: any[] = [];
   increment: number = 4;
+  count: number = 0;
 
   constructor(private animeService: AnimeService, private route: ActivatedRoute, private router: Router) { }
 
@@ -25,6 +26,7 @@ export class CharacterDetailsComponent {
 
       this.animeService.getCharacterImages(characterId).subscribe((data) => {
         this.characterImages = data.items;
+        this.count = data.count;
         this.showMoreImages();
       });
     });

@@ -24,7 +24,7 @@
             <div class="col-12 col-sm-6 col-lg-3 mb-4" *ngFor="let anime of visibleImages">
                 <div class="card">
                     <div class="image-over">
-                        <a [href]="'image/' + anime.id">
+                        <a [routerLink]="['/image/', anime.id]">
                             <img class="card-img-top" [src]="anime.image_url" alt="">
                         </a>
                     </div>

@@ -11,6 +11,7 @@ export class ArtistDetailsComponent {
   artistDetails: any;
   artistImages: any;
   artistId: string = '';
+  count: number = 0;
 
   constructor(private animeService: AnimeService, private route: ActivatedRoute, private router: Router) { }
 
@@ -24,6 +25,7 @@ export class ArtistDetailsComponent {
 
       this.animeService.getArtistImages(this.artistId).subscribe((data) => {
         this.artistImages = data;
+        this.count = data.count;
       });
     });
   }

@@ -70,7 +70,7 @@
                     <div class="col-12 col-md-6 item explore-item" *ngFor="let anime of visibleImages">
                         <div class="card">
                             <div class="image-over">
-                                <a [href]="'image/' + anime.id">
+                                <a [routerLink]="['/image/', anime.id]">
                                     <img class="card-img-top" [src]="anime.image_url" alt="">
                                 </a>
                             </div>
@@ -85,6 +85,13 @@
                     </div>
                     <div class="col-12 text-center" *ngIf="isLoadMoreVisible()">
                         <button (click)="showMoreImages()" class="btn btn-bordered-white mt-5">Load More</button>
+                    </div>
+                </div>
+                <div class="row items explore-items" *ngIf="count == 0">
+                    <div class="col-12 mt-2">
+                        <div class="card">
+                            <p>No Images Available</p>
+                        </div>
                     </div>
                 </div>
             </div>

@@ -24,10 +24,10 @@
             <div class="col-12 col-sm-6 col-lg-3 item" *ngFor="let artist of artistsList.items">
                 <div class="card no-hover text-center">
                     <div class="image-over">
-                        <a [href]="'artist/' + artist.id">
+                        <a [routerLink]="['/artist/', artist.id]">
                             <img class="card-img-top" src="assets/img/bg/artist-bg.jpg" alt="">
                         </a>
-                        <a class="seller" [href]="'artist/' + artist.id">
+                        <a class="seller" [routerLink]="['/artist/', artist.id]">
                             <div class="seller-thumb avatar-lg">
                                 <img class="rounded-circle" src="assets/img/user/artist-user.webp" alt="">
                             </div>
@@ -35,7 +35,7 @@
                     </div>
                     <div class="card-caption col-12 p-0">
                         <div class="card-body mt-4">
-                            <a [href]="'artist/' + artist.id">
+                            <a [routerLink]="['/artist/', artist.id]">
                                 <h5>{{artist.name}}</h5>
                             </a>
                             <div *ngIf="artist.links && artist.links.length > 0" class="links-container">

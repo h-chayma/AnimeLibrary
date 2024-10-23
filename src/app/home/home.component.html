@@ -23,7 +23,7 @@
                     <div class="swiper-slide item" *ngFor="let anime of imagesList.items.slice(0, 6)">
                         <div class="card">
                             <div class="image-over">
-                                <a [href]="'image/' + anime.id">
+                                <a [routerLink]="['/image/', anime.id]">
                                     <img class="card-img-top" [src]="anime.image_url" alt="">
                                 </a>
                             </div>
@@ -63,11 +63,11 @@
             <div class="col-12 col-sm-6 col-lg-4 item" *ngFor="let artist of artistsList.items.slice(0, 6)">
                 <div class="card no-hover">
                     <div class="single-seller d-flex align-items-center">
-                        <a [href]="'artist/' + artist.id">
+                        <a [routerLink]="['/artist/', artist.id]">
                             <img class="avatar-md rounded-circle" src="assets/img/user/artist-user.webp" alt="">
                         </a>
                         <div class="seller-info ml-3">
-                            <a class="seller mb-2" [href]="'artist/' + artist.id">{{artist.name}}</a>
+                            <a class="seller mb-2" [routerLink]="['/artist/', artist.id]">{{artist.name}}</a>
                             <div *ngIf="artist.links && artist.links.length > 0" class="links-container">
                                 <ul class="links-list">
                                     <li *ngFor="let link of artist.links">
