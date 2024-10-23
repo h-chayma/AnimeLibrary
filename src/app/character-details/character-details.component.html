@@ -1,0 +1,93 @@
+<section class="breadcrumb-area overlay-dark d-flex align-items-center">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <div class="breadcrumb-content text-center">
+                    <h2 class="m-0">Character Details</h2>
+                    <ol class="breadcrumb d-flex justify-content-center">
+                        <li class="breadcrumb-item"><a routerLink="">Home</a></li>
+                        <li class="breadcrumb-item active">Character Details</li>
+                    </ol>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="author-area explore-area popular-collections-area">
+    <div class="container">
+        <div class="row justify-content-between">
+            <div class="col-12 col-md-4">
+                <div class="card no-hover text-center">
+                    <div class="image-over">
+                        <img class="card-img-top" src="assets/img/bg/character-bg.avif" alt="">
+                        <div class="author">
+                            <div class="author-thumb avatar-lg">
+                                <img class="rounded-circle" src="assets/img/user/character-user.jpg" alt="">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-caption col-12 p-0">
+                        <div class="card-body mt-4">
+                            <h5 class="mb-3">{{ characterDetails.name }}</h5>
+                            <p class="my-3 text-left">{{ characterDetails.description }}</p>
+
+                            <p class="my-3 text-left"><b>Aliases : </b>
+                                {{ displayField(characterDetails.aliases, 'No aliases available') }}
+                            </p>
+                            <p class="my-3 text-left"><b>Age : </b>
+                                {{ displayField(characterDetails.ages, 'No age available') }}
+                            </p>
+                            <p class="my-3 text-left"><b>Gender : </b>
+                                {{ displayField(characterDetails.gender, 'Not available') }}
+                            </p>
+                            <p class="my-3 text-left"><b>Species : </b>
+                                {{ displayField(characterDetails.species, 'Not available') }}
+                            </p>
+                            <p class="my-3 text-left"><b>Nationality : </b>
+                                {{ displayField(characterDetails.nationality, 'Not available') }}
+                            </p>
+                            <p class="my-3 text-left"><b>Occupations : </b>
+                                {{ displayField(characterDetails.occupations, 'No occupations available') }}
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-12 col-md-8">
+                <div class="row justify-content-center mt-5 mt-lg-0">
+                    <div class="col-12">
+                        <div class="explore-menu btn-group btn-group-toggle flex-wrap justify-content-center">
+                            <label class="d-table text-uppercase p-2">
+                                <span>Character's Images</span>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row items explore-items">
+                    <div class="col-12 col-md-6 item explore-item" *ngFor="let anime of visibleImages">
+                        <div class="card">
+                            <div class="image-over">
+                                <a [href]="'image/' + anime.id">
+                                    <img class="card-img-top" [src]="anime.image_url" alt="">
+                                </a>
+                            </div>
+                            <div class="card-caption col-12 p-0">
+                                <div class="card-body">
+                                    <div class="card-bottom d-flex justify-content-between">
+                                        <span>{{ anime.image_width }} x {{ anime.image_height }}</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-12 text-center" *ngIf="isLoadMoreVisible()">
+                        <button (click)="showMoreImages()" class="btn btn-bordered-white mt-5">Load More</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

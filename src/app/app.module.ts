@@ -12,6 +12,8 @@ import { ArtistsListComponent } from './artists-list/artists-list.component';
 import { ImageDetailsComponent } from './image-details/image-details.component';
 import { ArtistDetailsComponent } from './artist-details/artist-details.component';
 import { AboutComponent } from './about/about.component';
+import { CharacterDetailsComponent } from './character-details/character-details.component';
+import { CharactersListComponent } from './characters-list/characters-list.component';
 
 @NgModule({
   declarations: [
@@ -23,7 +25,9 @@ import { AboutComponent } from './about/about.component';
     ArtistsListComponent,
     ImageDetailsComponent,
     ArtistDetailsComponent,
-    AboutComponent
+    AboutComponent,
+    CharacterDetailsComponent,
+    CharactersListComponent
   ],
   imports: [
     BrowserModule,

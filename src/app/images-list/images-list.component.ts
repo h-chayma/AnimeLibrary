@@ -9,7 +9,6 @@ import { AnimeService } from '../service/anime.service';
 export class ImagesListComponent {
   imagesList: any[] = [];
   visibleImages: any[] = [];
-  itemsToShow: number = 4;
   increment: number = 4;
   loading: boolean = true; 
 

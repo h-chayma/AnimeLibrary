@@ -55,12 +55,12 @@ export class HomeComponent implements OnInit, AfterViewChecked {
     }
   }
 
-  convertOctetsToKilobytes(octets: number) {
-    if (typeof octets !== 'number' || isNaN(octets)) {
+  convertBytesToKilobytes(bytes: number) {
+    if (typeof bytes !== 'number' || isNaN(bytes)) {
       return 'Invalid input';
     }
 
-    return (octets / 1024).toFixed(2) + ' KB';
+    return (bytes / 1024).toFixed(2) + ' KB';
   }
 
   initSwipers() {
@@ -71,10 +71,11 @@ export class HomeComponent implements OnInit, AfterViewChecked {
       loop: true,
       slidesPerView: 1,
       spaceBetween: 0,
-      pagination: {
-        el: '.swiper-pagination'
-      },
       navigation: false,
+      pagination: {
+        el: '.swiper-pagination',
+        clickable: true
+      },
       keyboard: {
         enabled: true,
         onlyInViewport: false
@@ -96,7 +97,6 @@ export class HomeComponent implements OnInit, AfterViewChecked {
       }
     });
 
-    // Mid Slider
     const midSlider = new Swiper('.slider-mid', {
       autoplay: true,
       loop: true,

@@ -33,5 +33,17 @@ export class AnimeService {
   getArtistImages(artistId: string): Observable<any> {
     return this.http.get<any>(this.apiUrl + "/artists/" + artistId + "/images?rating=safe");
   }
-  
+
+  getCharactersList(): Observable<any> {
+    return this.http.get<any>(this.apiUrl + "/characters");
+  }
+
+  getCharacterById(characterId: string): Observable<any> {
+    return this.http.get<any>(this.apiUrl + "/characters/" + characterId);
+  }
+
+  getCharacterImages(characterId: string): Observable<any> {
+    return this.http.get<any>(this.apiUrl + "/characters/" + characterId + "/images");
+  }
+
 }

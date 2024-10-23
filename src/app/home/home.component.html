@@ -30,7 +30,7 @@
                             <div class="card-caption col-12 p-0">
                                 <div class="card-body">
                                     <div class="card-bottom d-flex justify-content-between">
-                                        <span>{{convertOctetsToKilobytes(anime.image_size)}}</span>
+                                        <span>{{convertBytesToKilobytes(anime.image_size)}}</span>
                                         <span>{{anime.image_width}} x {{anime.image_height}}</span>
                                     </div>
                                 </div>
@@ -64,7 +64,7 @@
                 <div class="card no-hover">
                     <div class="single-seller d-flex align-items-center">
                         <a [href]="'artist/' + artist.id">
-                            <img class="avatar-md rounded-circle" src="assets/img/user.webp" alt="">
+                            <img class="avatar-md rounded-circle" src="assets/img/user/artist-user.webp" alt="">
                         </a>
                         <div class="seller-info ml-3">
                             <a class="seller mb-2" [href]="'artist/' + artist.id">{{artist.name}}</a>

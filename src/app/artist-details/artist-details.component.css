@@ -2,3 +2,7 @@
     width: 100%;
     height: 400px;
 }
+
+.breadcrumb-area .breadcrumb-item.active {
+    color: gray !important;
+}

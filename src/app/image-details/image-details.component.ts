@@ -28,6 +28,14 @@ export class ImageDetailsComponent {
     return `rgb(${color[0]}, ${color[1]}, ${color[2]})`;
   }
 
+  convertBytesToKilobytes(bytes: number) {
+    if (typeof bytes !== 'number' || isNaN(bytes)) {
+      return 'Invalid input';
+    }
+
+    return (bytes / 1024).toFixed(2) + ' KB';
+  }
+
   copyColorCode(color: string): void {
     const inputElement = document.createElement('input');
     inputElement.value = color;

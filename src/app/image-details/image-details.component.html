@@ -20,39 +20,118 @@
             <div class="col-12 col-lg-6">
                 <div class="item-info">
                     <div class="item-thumb text-center">
-                        <img [src]="imageDetails.image_url" alt="">
+                        <img [src]="imageDetails.image_url" alt="Image">
                     </div>
                 </div>
             </div>
             <div class="col-12 col-lg-6">
                 <div class="content mt-5 mt-lg-0">
-                    <h3 class="m-0 mb-3">Details</h3>
-                    <h5 class="m-0">Created Date</h5>
-                    <p *ngIf="imageDetails.created_at">{{ formatDate(imageDetails.created_at) }}</p>
-                    <p *ngIf="!imageDetails.created_at">Creation date not available</p>
-                    <h5 class="m-0">Updated Date</h5>
-                    <p *ngIf="imageDetails.updated_at">{{ formatDate(imageDetails.updated_at) }}</p>
-                    <p *ngIf="!imageDetails.updated_at">Creation date not available</p>
-                    <h5 class="m-0">Image source</h5>
-                    <p *ngIf="imageDetails.source"><a [href]="imageDetails.source">{{ imageDetails.source }}</a></p>
-                    <p *ngIf="!imageDetails.source">No source available</p>
-                    <h5 class="m-0">Verification</h5>
-                    <p *ngIf="imageDetails.verification"> {{ imageDetails.verification }}</p>
-                    <p *ngIf="!imageDetails.verification">No verification available</p>
-                    <h5 class="m-0">Age rating</h5>
-                    <p *ngIf="imageDetails.rating">{{ imageDetails.rating }}</p>
-                    <p *ngIf="!imageDetails.rating">No rating available</p>
-                    <h5 class="m-0 mb-3">Color Dominant</h5>
-                    <div class="color-box" [style.background-color]="getColorString(imageDetails.color_dominant)"></div>
+                    <h3 class="m-0">ID : {{imageDetails.id}}</h3>
+                    <p>
+                        <span *ngFor="let tag of imageDetails.tags; let last = last">
+                            {{ tag.name }}<span *ngIf="!last">, </span>
+                        </span>
+                    </p>
+                    <div *ngIf="imageDetails.artist" class="owner d-flex align-items-center">
+                        <span>Owned By</span>
+                        <a class="owner-meta d-flex align-items-center ml-3"
+                            [routerLink]="['/artist/', imageDetails.artist.id]">
+                            <img class="avatar-sm rounded-circle" src="assets/img/user/artist-user.webp" alt="">
+                            <h6 class="ml-2">{{imageDetails.artist.name}}</h6>
+                        </a>
+                    </div>
+                    <div class="item-info-list mt-4">
+                        <ul class="list-unstyled">
+                            <li>
+                                <b>Size : </b>
+                                <span *ngIf="imageDetails.image_size">{{
+                                    convertBytesToKilobytes(imageDetails.image_size) }}
+                                </span>
+                                <span *ngIf="!imageDetails.image_size">Size not available</span>
+                            </li>
+                            <li>
+                                <b>Dimensions : </b>
+                                <span *ngIf="imageDetails.image_width && imageDetails.image_height">
+                                    {{ imageDetails.image_width }} x {{ imageDetails.image_height }} px
+                                </span>
+                            </li>
+                            <li>
+                                <b>Source : </b>
+                                <span *ngIf="imageDetails.source">
+                                    <a [href]="imageDetails.source" target="_blank">{{ imageDetails.source }}</a>
+                                </span>
+                                <span *ngIf="!imageDetails.source">No source available</span>
+                            </li>
+                            <li>
+                                <b>Age Rating : </b>
+                                <span *ngIf="imageDetails.rating">{{ imageDetails.rating }}</span>
+                                <span *ngIf="!imageDetails.rating">No rating available</span>
+                            </li>
+                            <li>
+                                <b>Verification: </b>
+                                <ng-container *ngIf="imageDetails.verification === 'verified'; else notVerified">
+                                    {{ imageDetails.verification }}
+                                    <i class="fa-solid fa-check"></i>
+                                </ng-container>
+                                <ng-template #notVerified>
+                                    <ng-container
+                                        *ngIf="imageDetails.verification === 'not verified'; else noVerification">
+                                        {{ imageDetails.verification }}
+                                        <i class="fa-solid fa-xmark"></i> </ng-container>
+                                </ng-template>
+                                <ng-template #noVerification>
+                                    No verification available
+                                </ng-template>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="row items">
+                        <div class="col-12 col-md-6 item px-lg-2">
+                            <div class="card no-hover">
+                                <div class="single-seller d-flex align-items-center">
+                                    <div class="seller-info ml-3">
+                                        <p class="seller mb-2">Created Date</p>
+                                        <span *ngIf="imageDetails.created_at">{{imageDetails.created_at | date:
+                                            'longDate'}}</span>
+                                        <span *ngIf="!imageDetails.created_at">Creation date not available</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-12 col-md-6 item px-lg-2">
+                            <div class="card no-hover">
+                                <div class="single-seller d-flex align-items-center">
+                                    <div class="seller-info ml-3">
+                                        <p class="seller mb-2">Updated Date</p>
+                                        <span *ngIf="imageDetails.updated_at">{{imageDetails.updated_at | date:
+                                            'longDate'}}</span>
+                                        <span *ngIf="!imageDetails.updated_at">Update date not available</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-12 item px-lg-2">
+                            <div class="card no-hover">
+                                <div class="price d-flex justify-content-between align-items-center">
+                                    <h4 class="mt-0 mb-2">Color Dominant</h4>
+                                    <div class="color-box"
+                                        [style.background-color]="getColorString(imageDetails.color_dominant)"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
             <div class="col-12 mt-4">
                 <div class="card no-hover">
                     <div class="color-palette">
                         <h4 class="palette-title">Tags</h4>
-                        <div class="color-box-container mt-3">
-                            <div *ngFor="let tag of imageDetails.tags">
-                                <p><b class="tagname">{{ tag.name }}:</b> {{tag.description}}</p>
+                        <div class="tag-box-container mt-3">
+                            <div *ngFor="let tag of imageDetails.tags" class="tag-item">
+                                <p>
+                                    <b class="tag-name">{{ tag.name }} : </b>
+                                    <span>{{ tag.description }}</span>
+                                </p>
                             </div>
                         </div>
                     </div>

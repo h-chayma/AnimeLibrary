@@ -21,6 +21,25 @@
     border: 1px solid #ddd;
 }
 
-.tagname {
+.tag-item {
+    margin-bottom: 10px;
+    display: block;
+}
+
+.tag-box-container {
+    display: block;
+    flex-wrap: wrap;
+}
+
+.tag-name {
     color: rgb(160, 83, 233);
+    font-weight: bold;
+}
+
+.breadcrumb-area .breadcrumb-item.active {
+    color: gray !important;
+}
+
+h4 {
+    margin: 0;
 }
